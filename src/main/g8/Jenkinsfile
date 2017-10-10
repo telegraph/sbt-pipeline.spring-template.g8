@@ -45,17 +45,21 @@ ansiColor('xterm') {
             }
 
             stage("Build & Unit Tests"){
-              sendNotification("Build", "${env.SLACK_PLATFORMS_CI}", "#platforms_ci",
-                """
-                  mvn clean test
-                """
-              )
+              withMaven(jdk: 'JDK8', maven: 'Maven3.3.9') {
+                sendNotification("Build", "${env.SLACK_PLATFORMS_CI}", "#platforms_ci",
+                    """
+                        mvn clean test
+                    """
+                )
+              }
             }
 
             stage("Assembly"){
+            withMaven(jdk: 'JDK8', maven: 'Maven3.3.9') {
                 sh """
                     mvn clean package -DskipTests
                 """
+            }
                 docker.build("${projectName}:${pipeline_version}", "--build-arg APP_NAME=${projectName} --build-arg APP_VERSION=${pipeline_version} .")
             }
 
