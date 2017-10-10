@@ -1,0 +1,1 @@
+# sbt-pipeline.spring-template.g8
