@@ -11,7 +11,7 @@ public class MessageController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/message")
+    @RequestMapping("/$name$/message")
     public Message message(@RequestParam(value="name", defaultValue="World") String name) {
         Message message = new Message(counter.incrementAndGet(), String.format(template, name));
         return message;

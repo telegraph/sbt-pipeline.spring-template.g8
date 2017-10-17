@@ -1,3 +1,4 @@
+#!groovy
 
 def sendNotification( action, token, channel, shellAction ){
   try {

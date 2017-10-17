@@ -8,6 +8,7 @@ lazy val root = (project in file("."))
   .settings      (Defaults.itSettings:_*)
   .settings(
     name                                  := "$name;format="normalize"$",
+    version                               := "1.0.0-" + buildNumber.getOrElse("SNAPSHOT"),
     // Deployment
     (stackCustomParams in DeployDev    )  += ("BuildVersion" -> version.value),
     (stackCustomParams in DeployPreProd)  += ("BuildVersion" -> version.value),

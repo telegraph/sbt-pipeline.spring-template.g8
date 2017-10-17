@@ -24,14 +24,14 @@ public class MessageControllerTests {
     @Test
     public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
 
-        this.mockMvc.perform(get("/message")).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("/$name$/message")).andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("\$.content").value("Hello, World!"));
     }
 
     @Test
     public void paramGreetingShouldReturnTailoredMessage() throws Exception {
 
-        this.mockMvc.perform(get("/message").param("name", "Batman"))
+        this.mockMvc.perform(get("/$name$/message").param("name", "Batman"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("\$.content").value("Hello, Batman!"));
     }
